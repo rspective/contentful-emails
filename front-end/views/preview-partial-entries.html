@@ -1,0 +1,66 @@
+<script type="text/javascript">
+$(document).ready(function() {
+  var databody = null;
+  var $modal = $("#template-preview-modal");
+  var $modalheader = $modal.find(".modal-header");
+  var $modaliframe = $modal.find("iframe");
+
+});
+
+function openModal(name) {
+  var $modal = $("#template-preview-modal");
+  var $modalheader = $modal.find(".modal-header");
+  var $modaliframe = $modal.find("iframe");
+
+  $.get(window.location.href + "/preview/" + name, function(data) {
+    $modalheader.find("h4").text(data && data.subject);
+    $modalheader.find("h6").text(name);
+
+    var document = $modaliframe.get(0).contentWindow.document
+
+    document.open();
+    document.write(data && data.body);
+    document.close();
+   
+    $modal.modal("show");
+  });
+}
+</script>
+<table class="table">
+  <thead class="thead-default">
+    <tr>
+      <th>Name</th>
+      <th>Created</th>
+      <th>Modified</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for entry in entries %}
+    <tr>
+      <td><a href="javascript:openModal('{{ entry.fields.name }}');">{{ entry.fields.name }}</td>
+      <td>{{ __util.format.datetime(entry.sys.createdAt) }}</td>
+      <td>{{ __util.format.datetime(entry.sys.updatedAt) }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<div id="template-preview-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title"></h4>
+        <h6 class="modal-title template"></h6>
+      </div>
+      <div class="modal-body" style="padding: 0;">
+        <iframe style="width: 100%; height: 500px; border: none;" src=""></iframe>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css">
+    <script type="text/javascript" src="/assets/js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+    <title>Contentful Ops Emails</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link {% if __isCurrentUrl('/emails/contentful-published') %}active{% endif %}" href="/emails/contentful-published">Published</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if __isCurrentUrl('/emails/contentful-draft') %}active{% endif %}" href="/emails/contentful-draft">Draft</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if __isCurrentUrl('/emails/backup') %}active{% endif %}" href="/emails/backup">Backup</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if __isCurrentUrl('/emails/cache')%}active{% endif %}" href="/emails/cache">Cache</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+    {% block body %}{% endblock %}
+    </div>
+</body>
+</html>
