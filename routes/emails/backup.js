@@ -4,8 +4,10 @@ var EmailContainer  = require("./../../services/email-container");
 var router          = express.Router({ mergeParams: true });
 var emailContainer  = new EmailContainer({ container: "backup" });
 
+var payload         = require("./data");
+
 router.get("/preview/:id", (request, response, next) => {
-    emailContainer.render(request.params.id)
+    emailContainer.render(request.params.id, payload)
         .then((emailEntry) => {
             response.status(200).json(emailEntry);
         })

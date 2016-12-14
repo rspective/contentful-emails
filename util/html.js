@@ -16,13 +16,15 @@ class HtmlUtil {
         context.__config = this.config;
         context.__viewsPath = this.config.paths.views;
         context.__template = template;
+        context.__now = new Date();
         return swig.renderFile(templateInViews, context);
     }
     renderPlain(templatePlain, tempateBasePath = "", context = {}) {
         var config = new Config(context);
         context.__format = new FormatUtil(this.config);
         context.__config = this.config;
-        context.__viewsPath = this.config.paths.views;
+        context.__viewsPath = this.config.paths.views;        
+        context.__now = new Date();
         return swig.render(
             templatePlain, {
                 locals  : context, 

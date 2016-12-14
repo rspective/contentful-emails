@@ -1,8 +1,35 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        blockquote {
+            font-size: 12px;
+            text-align: center;
+            padding: 0;
+            margin: 20px;
+        }
+    </style>
 </head>
-<body>
-{% block body %}{% endblock %}
+<body style="font-size: 12px;font-family:arial,helvetica,sans-serif;font-weight:normal;font-variant:normal;font-style:normal;text-indent:0px;word-spacing:0px;line-height:1.5;margin:0;padding:0;">
+    <table style="width: 650px; margin: 0 auto; padding: 0; background-color: white; color:black;" cellspacing="0" cellpadding="0">
+        <tbody>
+            <tr><td>
+                <div style="text-align: center; padding: 20px;">
+                    <img src="http://static1.squarespace.com/static/556460c9e4b0e65363ecdd12/t/582eb95546c3c4327917637e/1481710294015/%3Fformat=1500w" width="200" />
+                </div>
+                <div style="height:3px; background-color: #9CE9AA"></div>
+                <div style="font-size: 14px; padding: 20px">
+                {% block body %}{% endblock %}
+                </div>
+                <div style="height:3px; background-color: #9CE9AA"></div>
+                <div style="text-align: center; padding: 20px; color: #CCCCCC;">
+                {% block footer %}
+                &copy; Voucherify.io, {{ __format.date(__now, "YYYY") }}
+                {% endblock %}
+                </div>
+            </td></tr>
+        </tbody>
+    </table>
 </body>
 </html>

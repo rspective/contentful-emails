@@ -13,7 +13,7 @@ function openModal(name) {
   var $modaliframe = $modal.find("iframe");
 
   $.get(window.location.href + "/preview/" + name, function(data) {
-    $modalheader.find("h4").text(data && data.subject);
+    $modalheader.find("h4").text("Subject: " + (data && data.subject || ""));
     $modalheader.find("h6").text(name);
 
     var document = $modaliframe.get(0).contentWindow.document
@@ -46,7 +46,7 @@ function openModal(name) {
 </table>
 
 <div id="template-preview-modal" class="modal fade" tabindex="-1" role="dialog">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
